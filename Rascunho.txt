@@ -1,0 +1,127 @@
+🎓 Classe Curso
+Atributos:
+
+nome: String
+
+descricao: String
+
+Relacionamentos:
+
+disciplinas: List<Disciplina> (1..*)
+
+📚 Classe Disciplina
+Atributos:
+
+nome: String
+
+Relacionamentos:
+
+cursos: List<Curso> (*)
+
+professorResponsavel: Professor (1)
+
+semestres: List<Semestre> (0..*)
+
+avaliacoes: List<Avaliacao> (*)
+
+alunosMatriculados: List<Aluno> (*)
+
+👨‍🏫 Classe Professor
+Atributos:
+
+nome: String
+
+email: String
+
+login: String
+
+senha: String
+
+Relacionamentos:
+
+disciplinasResponsaveis: List<Disciplina> (*)
+
+correcoesFeitas: List<Correcao> (0..*)
+
+🎓 Classe Aluno
+Atributos:
+
+nome: String
+
+email: String
+
+login: String
+
+senha: String
+
+matricula: String
+
+Relacionamentos:
+
+disciplinasMatriculadas: List<Disciplina> (*)
+
+respostas: List<Resposta> (0..*)
+
+correcoesFeitasComoPar: List<Correcao> (0..*)
+
+📅 Classe Semestre
+Atributos:
+
+ano: Int
+
+periodo: String (ex: "2025.1", "2025.2")
+
+Relacionamentos:
+
+avaliacoes: List<Avaliacao> (0..*)
+
+📝 Classe Avaliacao
+Atributos:
+
+enunciado: String
+
+notaMaxima: Float
+
+dataInicio: Date
+
+dataFim: Date
+
+tipoCorrecao: Enum {CONVENCIONAL, PARES}
+
+Relacionamentos:
+
+disciplina: Disciplina (1)
+
+semestre: Semestre (1)
+
+respostas: List<Resposta> (0..*)
+
+📤 Classe Resposta
+Atributos:
+
+dataSubmissao: Date
+
+imagemDiagrama: Image
+
+Relacionamentos:
+
+aluno: Aluno (1)
+
+avaliacao: Avaliacao (1)
+
+correcoes: List<Correcao> (0..*)
+
+✅ Classe Correcao
+Atributos:
+
+nota: Float
+
+comentarios: String
+
+Relacionamentos:
+
+resposta: Resposta (1)
+
+avaliadorProfessor: Professor (0..1)
+
+avaliadorAluno: Aluno (0..1)
